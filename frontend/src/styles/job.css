@@ -1,0 +1,152 @@
+.job{
+width:90%;
+max-width:1000px;
+margin:30px auto;
+padding:20px;
+}
+
+.job h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:20px;
+}
+
+.jobForm{
+background:white;
+padding:20px;
+border:1px solid #cccccc;
+border-radius:8px;
+box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+margin-bottom:30px;
+}
+
+.formGroup{
+display:flex;
+flex-direction:column;
+margin-bottom:15px;
+}
+
+.formGroup label{
+font-weight:bold;
+margin-bottom:5px;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea{
+padding:10px;
+border:1px solid #cccccc;
+border-radius:5px;
+font-size:15px;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus{
+outline:none;
+border-color:#2563eb;
+}
+
+.formGroup textarea{
+resize:vertical;
+min-height:120px;
+}
+
+.error{
+color:red;
+font-size:14px;
+margin-top:5px;
+}
+
+.submitButton{
+padding:10px 20px;
+background:#16a34a;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:16px;
+}
+
+.submitButton:hover{
+background:#15803d;
+}
+
+.jobTable{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+margin-top:20px;
+}
+
+.jobTable th{
+background:#2563eb;
+color:white;
+padding:12px;
+text-align:left;
+}
+
+.jobTable td{
+padding:10px;
+border:1px solid #dddddd;
+}
+
+.jobTable tr:nth-child(even){
+background:#f8f8f8;
+}
+
+.viewButton{
+padding:8px 15px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin-right:10px;
+}
+
+.viewButton:hover{
+background:#1d4ed8;
+}
+
+.editButton{
+padding:8px 15px;
+background:#f59e0b;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin-right:10px;
+}
+
+.editButton:hover{
+background:#d97706;
+}
+
+.deleteButton{
+padding:8px 15px;
+background:#dc2626;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.deleteButton:hover{
+background:#b91c1c;
+}
+
+.cancelButton{
+padding:12px 18px;
+background:#6b7280;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-left:10px;
+}
+
+.cancelButton:hover{
+background:#4b5563;
+}

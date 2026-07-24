@@ -1,0 +1,109 @@
+.applicationsPage{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.applicationsHeader{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.applicationsHeader h1{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.applicationsHeader p{
+    color:#555;
+    font-size:18px;
+}
+
+.applicationsHeader span{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.applicationsTableCard{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0px 4px 10px rgba(0,0,0,0.1);
+    overflow-x:auto;
+}
+
+.applicationsTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.applicationsTable th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+    text-align:left;
+}
+
+.applicationsTable td{
+    padding:15px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.applicationsTable tr:hover{
+    background:#f8fafc;
+}
+
+.statusBadge{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+    background:#e0e7ff;
+    color:#3730a3;
+}
+
+.withdrawButton{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:8px 18px;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.withdrawButton:hover{
+    background:#b91c1c;
+}
+
+.emptyRow{
+    text-align:center;
+    color:#777;
+    padding:25px;
+}
+
+.loadingContainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:400px;
+}
+
+@media(max-width:768px){
+
+    .applicationsHeader{
+        text-align:center;
+    }
+
+    .applicationsTable th,
+    .applicationsTable td{
+        padding:10px;
+    }
+
+    .withdrawButton{
+        width:100%;
+    }
+
+}

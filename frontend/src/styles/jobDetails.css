@@ -1,0 +1,169 @@
+.jobDetailsPage{
+    display:flex;
+    justify-content:center;
+}
+
+.jobDetailsCard{
+    width:100%;
+    max-width:900px;
+    background:white;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.jobHeader{
+    border-bottom:1px solid #e5e7eb;
+    padding-bottom:20px;
+    margin-bottom:25px;
+}
+
+.jobHeader h1{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.jobHeader h3{
+    color:#555;
+    font-weight:500;
+}
+
+.detailsGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.detailItem{
+    background:#f8fafc;
+    padding:18px;
+    border-radius:10px;
+}
+
+.detailItem label{
+    display:block;
+    font-weight:bold;
+    color:#2563eb;
+    margin-bottom:8px;
+}
+
+.detailItem p{
+    color:#444;
+}
+
+.descriptionCard{
+    background:#f8fafc;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:30px;
+}
+
+.descriptionCard h2{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.descriptionCard p{
+    line-height:1.8;
+    color:#444;
+}
+
+.buttonContainer{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.resumeUploadSection{
+    background:#f8fafc;
+    padding:18px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.resumeUploadSection label{
+    display:block;
+    font-weight:bold;
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.resumeUploadSection input[type="file"]{
+    display:block;
+}
+
+.resumeUploadSection .error{
+    color:#dc2626;
+    margin-top:10px;
+}
+
+.applyButton:disabled{
+    background:#9ca3af;
+    cursor:not-allowed;
+}
+
+.applyButton{
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.applyButton:hover{
+    background:#15803d;
+}
+
+.backButton{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.backButton:hover{
+    background:#1d4ed8;
+}
+
+.loadingContainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:400px;
+}
+
+.jobNotFound{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:400px;
+    color:#dc2626;
+}
+
+@media(max-width:768px){
+
+    .jobDetailsCard{
+        padding:20px;
+    }
+
+    .detailsGrid{
+        grid-template-columns:1fr;
+    }
+
+    .buttonContainer{
+        flex-direction:column;
+    }
+
+    .applyButton,
+    .backButton{
+        width:100%;
+    }
+
+}

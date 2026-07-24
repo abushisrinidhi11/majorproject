@@ -1,0 +1,160 @@
+.categoryPage{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.categoryHeader{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.categoryHeader h1{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.categoryHeader span{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.categoryFormCard{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.formGroup{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+}
+
+.formGroup label{
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.formGroup input{
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.formGroup input:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+.error{
+    color:red;
+    font-size:14px;
+    margin-top:5px;
+}
+
+.buttonGroup{
+    display:flex;
+    gap:15px;
+}
+
+.saveButton{
+    background:#16a34a;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.cancelButton{
+    background:#f59e0b;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.tableCard{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    overflow-x:auto;
+}
+
+.categoryTable{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.categoryTable th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+.categoryTable td{
+    padding:15px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.categoryTable tr:hover{
+    background:#f8fafc;
+}
+
+.editButton{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    margin-right:10px;
+    cursor:pointer;
+}
+
+.deleteButton{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.emptyRow{
+    text-align:center;
+    padding:25px;
+    color:#666;
+}
+
+.loadingContainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:400px;
+}
+
+@media(max-width:768px){
+
+    .buttonGroup{
+        flex-direction:column;
+    }
+
+    .editButton,
+    .deleteButton{
+        width:100%;
+        margin:5px 0;
+    }
+
+}
+.readOnlyLabel{
+    color:#9ca3af;
+    font-size:13px;
+    font-style:italic;
+}

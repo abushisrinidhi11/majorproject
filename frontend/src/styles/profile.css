@@ -1,0 +1,167 @@
+.profilePage{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:30px;
+    background:#f5f7fb;
+    min-height:100%;
+}
+
+.profileCard{
+    width:100%;
+    max-width:900px;
+    background:#ffffff;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.12);
+}
+
+.profileHeading{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:30px;
+    font-size:32px;
+}
+
+.profileSection{
+    margin-bottom:30px;
+    padding-bottom:20px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.profileSection:last-of-type{
+    border-bottom:none;
+}
+
+.profileSection h2{
+    color:#1f2937;
+    margin-bottom:20px;
+    font-size:22px;
+}
+
+.profileField{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+}
+
+.profileField label{
+    font-weight:600;
+    margin-bottom:8px;
+    color:#374151;
+}
+
+.profileField input{
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.profileField input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0px 0px 5px rgba(37,99,235,0.3);
+}
+
+.profileField input:disabled{
+    background:#f3f4f6;
+    color:#6b7280;
+    cursor:not-allowed;
+}
+
+.profileButtons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.profileButtons button{
+    min-width:150px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.editButton{
+    background:#2563eb;
+    color:white;
+}
+
+.editButton:hover{
+    background:#1d4ed8;
+}
+
+.saveButton{
+    background:#16a34a;
+    color:white;
+}
+
+.saveButton:hover{
+    background:#15803d;
+}
+
+.cancelButton{
+    background:#f59e0b;
+    color:white;
+}
+
+.cancelButton:hover{
+    background:#d97706;
+}
+
+.logoutButton{
+    background:#dc2626;
+    color:white;
+}
+
+.logoutButton:hover{
+    background:#b91c1c;
+}
+
+@media screen and (max-width:768px){
+
+    .profilePage{
+        padding:15px;
+    }
+
+    .profileCard{
+        padding:20px;
+    }
+
+    .profileHeading{
+        font-size:26px;
+    }
+
+    .profileSection h2{
+        font-size:20px;
+    }
+
+    .profileButtons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .profileButtons button{
+        width:100%;
+    }
+}
+.profileField select{
+    width:100%;
+    padding:10px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:15px;
+    background:white;
+}
+
+.profileField select:disabled{
+    background:#f3f4f6;
+}

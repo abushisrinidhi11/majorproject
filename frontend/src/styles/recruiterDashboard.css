@@ -1,0 +1,121 @@
+.dashboardPage{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.welcomeCard{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.welcomeCard h1{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.welcomeCard p{
+    color:#555;
+    font-size:16px;
+}
+
+.dashboardCards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.dashboardCard{
+    background:white;
+    border-radius:12px;
+    padding:30px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.dashboardCard:hover{
+    transform:translateY(-5px);
+    background:#2563eb;
+    color:white;
+}
+
+.dashboardCard h2{
+    margin-bottom:15px;
+}
+
+.dashboardCard h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.quickActions{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.quickActions h2{
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+.buttonGroup{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.primaryButton{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.primaryButton:hover{
+    background:#1d4ed8;
+}
+
+.logoutButton{
+    background:#dc2626;
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.logoutButton:hover{
+    background:#b91c1c;
+}
+
+.loadingContainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:400px;
+}
+
+@media(max-width:768px){
+
+    .dashboardCards{
+        grid-template-columns:1fr;
+    }
+
+    .buttonGroup{
+        flex-direction:column;
+    }
+
+    .primaryButton,
+    .logoutButton{
+        width:100%;
+    }
+
+}
