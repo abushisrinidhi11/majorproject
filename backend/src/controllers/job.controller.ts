@@ -1,6 +1,9 @@
 import Job from "../models/Job";
 import {Request,Response} from "express";
 import Category from "../models/Category";
+import User from "../models/User";
+import { getGenAI } from "../config/gemini";
+import Application from "../models/Application";
 const createJob=async (req: any, res: Response) =>
 {
     try
@@ -199,6 +202,8 @@ const deleteJob=async(req:any,res:Response)=>
             });
         }
         await job.deleteOne();
+        console.log("Deleting related applications");
+        await Application.deleteMany({ jobId: job._id });
         console.log("job deleted successfully");
         return res.status(200).json(
         {
@@ -216,4 +221,87 @@ const deleteJob=async(req:any,res:Response)=>
         });
     }
 };
+
 export{createJob,getAllJobs,getJobById,updateJob,deleteJob};
+export const generateCoverLetter = async (req: any, res: Response) =>
+{
+    try
+    {
+        console.log("Generate Cover Letter API called");
+
+        const job = await Job.findById(req.params.id);
+
+        if (!job)
+        {
+            console.log("Job not found");
+
+            return res.status(404).json({
+                success: false,
+                message: "Job not found"
+            });
+        }
+
+        const user = await User.findById(req.user._id);
+
+        if (!user)
+        {
+            console.log("User not found");
+
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        console.log("Calling Gemini API");
+
+        const genAI = await getGenAI();
+
+        // TEMPORARY DEBUG - list which models this API key can access
+        const availableModels = await genAI.models.list();
+        console.log("=== AVAILABLE MODELS FOR THIS KEY ===");
+        for (const model of availableModels.page)
+        {
+            console.log(" -", model.name);
+        }
+        console.log("=== END MODEL LIST ===");
+
+        const prompt =
+            "Write a professional, concise cover letter (max 350 words) " +
+            "for the following job application. Do not include any " +
+            "placeholder text like [Your Name] - use the real details " +
+            "given below. Return only the cover letter text, no preamble.\n\n" +
+            "JOB DETAILS\n" +
+            "Title: " + job.title + "\n" +
+            "Company: " + job.company + "\n" +
+            "Description: " + job.description + "\n\n" +
+            "APPLICANT DETAILS\n" +
+            "Name: " + user.fullName + "\n" +
+            "Education: " + (user.education || "Not specified") + "\n" +
+            "Experience: " + (user.experience || "Not specified") + "\n" +
+            "Skills: " + ((user.skills && user.skills.join(", ")) || "Not specified");
+
+        const aiResponse = await genAI.models.generateContent({
+            model: "gemini-3.6-flash",
+            contents: prompt
+        });
+
+        const coverLetter = aiResponse.text || "";
+
+        console.log("Cover Letter Generated Successfully");
+
+        return res.status(200).json({
+            success: true,
+            coverLetter
+        });
+    }
+    catch (error: any)
+    {
+        console.log("Generate Cover Letter Error:", error.message);
+
+        return res.status(500).json({
+            success: false,
+            message: "Failed to generate cover letter"
+        });
+    }
+};

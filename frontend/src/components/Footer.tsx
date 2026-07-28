@@ -13,9 +13,6 @@ const Footer=()=>
                 <Link to="/profile">Profile</Link>
                 <Link to="/my-applications">My Applications</Link>
             </div>
-            <div className="footerBottom">
-                <p>© 2026 JobHunt. All Rights Reserved.</p>
-            </div>
         </footer>
     );
 };

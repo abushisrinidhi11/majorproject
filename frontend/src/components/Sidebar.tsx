@@ -1,68 +1,42 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/sidebar.css";
-function Sidebar()
+
+function Sidebar({ isOpen, onClose }: any)
 {
-    console.log("Sidebar Rendering");
     const navigate = useNavigate();
     const location = useLocation();
     const { user } = useAuth();
+
     const recruiterMenu = [
-        {
-            title: "Dashboard",
-            path: "/recruiter/dashboard"
-        },
-        {
-            title: "Create Job",
-            path: "/job"
-        },
-        {
-            title: "Categories",
-            path: "/category"
-        },
-        {
-            title: "Applicants",
-            path: "/applicants"
-        },
-        {
-            title: "Profile",
-            path: "/profile"
-        }
+        { title: "Dashboard", path: "/recruiter/dashboard" },
+        { title: "Create Job", path: "/job" },
+        { title: "Categories", path: "/category" },
+        { title: "Applicants", path: "/applicants" },
+        { title: "Profile", path: "/profile" }
     ];
     const jobSeekerMenu = [
-        {
-            title: "Home",
-            path: "/home"
-        },
-        {
-            title: "Browse Jobs",
-            path: "/jobs"
-        },
-        {
-            title: "My Applications",
-            path: "/my-applications"
-        },
-        {
-            title: "Profile",
-            path: "/profile"
-        }
+        { title: "Home", path: "/home" },
+        { title: "Browse Jobs", path: "/jobs" },
+        { title: "My Applications", path: "/my-applications" },
+        { title: "Profile", path: "/profile" }
     ];
 
-    const menu =
-        user?.role === "jobRecruiter"
-            ? recruiterMenu
-            : jobSeekerMenu;
+    const menu = user?.role === "jobRecruiter" ? recruiterMenu : jobSeekerMenu;
+
     const handleNavigation = (path: string) =>
     {
-        console.log("Navigating To");
-        console.log(path);
         navigate(path);
+        if (onClose) onClose();
     };
+
     return (
-        <div className="sidebar">
-            <h2 className="sidebarTitle">Menu</h2>
-            {
-                menu.map((item) => (
+        <>
+            {isOpen && <div className="sidebarOverlay" onClick={onClose} />}
+
+            <div className={isOpen ? "sidebar sidebarOpen" : "sidebar"}>
+                <h2 className="sidebarTitle">Menu</h2>
+                {menu.map((item) => (
                     <button
                         key={item.path}
                         className={
@@ -70,15 +44,13 @@ function Sidebar()
                                 ? "sidebarButton activeSidebarButton"
                                 : "sidebarButton"
                         }
-                        onClick={() =>
-                            handleNavigation(item.path)
-                        }
+                        onClick={() => handleNavigation(item.path)}
                     >
                         {item.title}
                     </button>
-                ))
-            }
-        </div>
+                ))}
+            </div>
+        </>
     );
 }
 export default Sidebar;

@@ -109,6 +109,29 @@ export function JobProvider({ children }: any)
             throw error;
         }
     };
+    const generateCoverLetter = async (jobId: string) =>
+{
+    console.log("Generate Cover Letter Started");
+
+    try
+    {
+        const response = await api.post(
+            `/jobs/${jobId}/cover-letter`
+        );
+
+        console.log("Cover Letter Generated Successfully");
+
+        return response.data.coverLetter;
+    }
+    catch (error: any)
+    {
+        console.log("Generate Cover Letter Failed");
+
+        console.log(error.response?.data || error.message);
+
+        throw error;
+    }
+};
     return (
         <JobContext.Provider
             value={{
@@ -118,7 +141,8 @@ export function JobProvider({ children }: any)
                 getJobById,
                 createJob,
                 updateJob,
-                deleteJob
+                deleteJob,
+                generateCoverLetter
             }}
         >
             {children}

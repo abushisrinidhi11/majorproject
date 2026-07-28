@@ -1,18 +1,18 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import "../styles/layout.css";
 
 function JobSeekerLayout({ children }: any)
 {
-    console.log("Job Seeker Layout Rendering");
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
     return (
         <div className="layout">
-            <Navbar />
+            <Navbar onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
             <div className="layoutBody">
-                <Sidebar />
-                <div className="layoutContent">
-                    {children}
-                </div>
+                <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+                <div className="layoutContent">{children}</div>
             </div>
         </div>
     );

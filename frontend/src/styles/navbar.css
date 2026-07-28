@@ -1,3 +1,19 @@
+.navbarLeft{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.menuButton{
+    display:none;
+    background:transparent;
+    border:none;
+    color:white;
+    font-size:26px;
+    cursor:pointer;
+    line-height:1;
+    padding:0px 5px;
+}
 .navbar{
     height:70px;
     background:#2563eb;
@@ -57,4 +73,25 @@
 
 .logoutButton:hover{
     background:#dc2626;
+}
+@media(max-width:1024px){
+    .menuButton{
+        display:block;
+    }
+}
+
+@media(max-width:600px){
+    .navbar{
+        padding:0px 15px;
+    }
+    .navbarLogo{
+        font-size:22px;
+    }
+    .navbarUser{
+        display:none;
+    }
+    .navbarButton{
+        padding:8px 12px;
+        font-size:13px;
+    }
 }

@@ -150,3 +150,98 @@ margin-left:10px;
 .cancelButton:hover{
 background:#4b5563;
 }
+.jobPage{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+    padding:20px;
+}
+
+.jobHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.jobHeader h1{
+    color:#2563eb;
+}
+
+.jobHeader p{
+    font-size:16px;
+    color:#444;
+}
+
+.jobHeader span{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.jobFormCard{
+    background:white;
+    padding:20px;
+    border:1px solid #cccccc;
+    border-radius:8px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+    margin-bottom:30px;
+}
+
+.formGrid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:15px 20px;
+}
+
+.createButton{
+    padding:10px 20px;
+    background:#16a34a;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.createButton:hover{
+    background:#15803d;
+}
+
+.tableCard{
+    background:white;
+    padding:10px;
+    border-radius:8px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+    overflow-x:auto;
+    margin-bottom:20px;
+}
+
+.viewJobsButton{
+    padding:10px 20px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.viewJobsButton:hover{
+    background:#1d4ed8;
+}
+
+.emptyRow{
+    text-align:center;
+    color:#777;
+    padding:20px;
+}
+
+@media(max-width:768px){
+
+    .formGrid{
+        grid-template-columns:1fr;
+    }
+
+}

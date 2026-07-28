@@ -26,7 +26,9 @@ function JobDetails()
     const [applyError, setApplyError] = useState("");
 
     const [applying, setApplying] = useState(false);
-
+    const [coverLetter, setCoverLetter] = useState("");
+const [generatingLetter, setGeneratingLetter] = useState(false);
+const [coverLetterError, setCoverLetterError] = useState("");
     const loadJob = async () =>
     {
         try
@@ -87,6 +89,35 @@ function JobDetails()
         setApplyError("");
         setResumeFile(file);
     };
+    const handleGenerateCoverLetter = async () =>
+{
+    console.log("Generate Cover Letter Button Clicked");
+
+    setGeneratingLetter(true);
+    setCoverLetterError("");
+
+    try
+    {
+        const letter = await jobContext.generateCoverLetter(job._id);
+
+        setCoverLetter(letter);
+    }
+    catch (error: any)
+    {
+        console.log("Generate Cover Letter Failed");
+
+        console.log(error);
+
+        setCoverLetterError(
+            error.response?.data?.message ||
+            "Failed to generate cover letter"
+        );
+    }
+    finally
+    {
+        setGeneratingLetter(false);
+    }
+};
 
     const handleApply = async () =>
     {
@@ -255,6 +286,36 @@ function JobDetails()
                         </p>
 
                     </div>
+                    <div className="coverLetterSection">
+
+    <div className="coverLetterHeader">
+
+        <h2>Cover Letter</h2>
+
+        <button
+            type="button"
+            className="generateButton"
+            onClick={handleGenerateCoverLetter}
+            disabled={generatingLetter}
+        >
+            {generatingLetter ? "Generating..." : "Generate with AI"}
+        </button>
+
+    </div>
+
+    {coverLetterError && <p className="error">{coverLetterError}</p>}
+
+    {
+        coverLetter &&
+        <textarea
+            className="coverLetterBox"
+            value={coverLetter}
+            onChange={(event) => setCoverLetter(event.target.value)}
+            rows={12}
+        />
+    }
+
+</div>
 
                     <div className="resumeUploadSection">
 

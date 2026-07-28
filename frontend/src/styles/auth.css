@@ -1,5 +1,6 @@
 .auth{
-width:400px;
+width:90%;
+max-width:400px;
 margin:50px auto;
 padding:20px;
 border:1px solid #cccccc;
@@ -89,4 +90,10 @@ margin-top:10px;
 
 .submitButton:hover{
 background:#15803d;
+}
+@media(max-width:480px){
+.auth{
+    margin:30px auto;
+    padding:15px;
+}
 }
