@@ -1,11 +1,14 @@
 import * as Yup from "yup";
 
-console.log("Auth Validation Loaded");
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+
+const fullNameRegex = /^[A-Za-z][A-Za-z0-9 ]*$/;
 
 export const loginValidation = Yup.object({
 
     email: Yup.string()
-        .email("Invalid Email")
+        .trim()
+        .matches(emailRegex, "Enter a valid email address")
         .required("Email is required"),
 
     password: Yup.string()
@@ -16,10 +19,19 @@ export const loginValidation = Yup.object({
 export const registerValidation = Yup.object({
 
     fullName: Yup.string()
+        .trim()
+        .min(3, "Full name must be at least 3 characters")
+        .max(50, "Full name cannot exceed 50 characters")
+        .matches(/^[A-Za-z]/, "Full name must start with a letter")
+        .matches(
+            fullNameRegex,
+            "Full name can only contain letters, numbers, and spaces"
+        )
         .required("Full Name is required"),
 
     email: Yup.string()
-        .email("Invalid Email")
+        .trim()
+        .matches(emailRegex, "Enter a valid email address")
         .required("Email is required"),
 
     password: Yup.string()
