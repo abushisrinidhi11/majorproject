@@ -87,6 +87,29 @@ cursor:pointer;
 font-size:16px;
 margin-top:10px;
 }
+.passwordField{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.passwordField input{
+flex:1;
+}
+
+.togglePasswordButton{
+padding:8px 12px;
+background:#e5e7eb;
+border:1px solid #cccccc;
+border-radius:5px;
+cursor:pointer;
+font-size:13px;
+white-space:nowrap;
+}
+
+.togglePasswordButton:hover{
+background:#d1d5db;
+}
 
 .submitButton:hover{
 background:#15803d;
