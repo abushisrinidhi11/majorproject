@@ -18,6 +18,9 @@ const Auth = () =>
 
     const [isLogin, setIsLogin] = useState(true);
 
+    const [showLoginPassword, setShowLoginPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
     const handleLogin = async (values: any) =>
     {
         console.log("Login Started");
@@ -194,11 +197,26 @@ const Auth = () =>
 
                             <label>Password</label>
 
-                            <Field
-                                type="password"
-                                name="password"
-                                placeholder="Enter Password"
-                            />
+                            <div className="passwordField">
+
+                                <Field
+                                    type={showLoginPassword ? "text" : "password"}
+                                    name="password"
+                                    placeholder="Enter Password"
+                                />
+
+                                <button
+                                    type="button"
+                                    className="togglePasswordButton"
+                                    onClick={() =>
+                                        setShowLoginPassword(!showLoginPassword)
+                                    }
+                                    tabIndex={-1}
+                                >
+                                    {showLoginPassword ? "Hide" : "Show"}
+                                </button>
+
+                            </div>
 
                             <ErrorMessage
                                 name="password"
@@ -275,11 +293,26 @@ const Auth = () =>
 
                             <label>Password</label>
 
-                            <Field
-                                type="password"
-                                name="password"
-                                placeholder="Enter Password"
-                            />
+                            <div className="passwordField">
+
+                                <Field
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    placeholder="Enter Password"
+                                />
+
+                                <button
+                                    type="button"
+                                    className="togglePasswordButton"
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                    tabIndex={-1}
+                                >
+                                    {showPassword ? "Hide" : "Show"}
+                                </button>
+
+                            </div>
 
                             <ErrorMessage
                                 name="password"
