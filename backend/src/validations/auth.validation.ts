@@ -7,7 +7,12 @@ export const registerValidation=yup.object({
         .trim()
         .required("Full name is required")
         .min(3,"Full name must be at least 3 characters")
-        .max(50,"Full name cannot exceed 50 characters"),
+        .max(50,"Full name cannot exceed 50 characters")
+        .matches(/^[A-Za-z]/,"Full name must start with a letter")
+        .matches(
+            /^[A-Za-z][A-Za-z0-9 ]*$/,
+            "Full name can only contain letters, numbers, and spaces"
+        ),
 
     email:yup
         .string()
