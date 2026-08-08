@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { jobValidation } from "../validations/job.validation";
 import RecruiterLayout from "../layouts/RecruiterLayout";
 import "../styles/job.css";
-
+import { toast } from "react-toastify";
 const emptyJob = {
     title: "",
     company: "",
@@ -62,7 +62,7 @@ function Job()
     {
         console.log("Job Form Submitted");
 
-        try
+try
         {
             if (editingId)
             {
@@ -71,6 +71,8 @@ function Job()
                 await job.updateJob(editingId, values);
 
                 console.log("Job Updated Successfully");
+
+                toast.success("Job updated successfully");
             }
             else
             {
@@ -79,6 +81,8 @@ function Job()
                 await job.createJob(values);
 
                 console.log("Job Created Successfully");
+
+                toast.success("Job created successfully");
             }
 
             resetForm();
@@ -87,11 +91,15 @@ function Job()
 
             setInitialValues(emptyJob);
         }
-        catch (error)
+        catch (error: any)
         {
             console.log("Save Job Failed");
 
             console.log(error);
+
+            toast.error(
+                error.response?.data?.message || "Failed to save job"
+            );
         }
     };
 
@@ -127,15 +135,25 @@ function Job()
     {
         console.log("Delete Button Clicked");
 
+const handleDelete = async (id: string) =>
+    {
+        console.log("Delete Button Clicked");
+
         try
         {
             await job.deleteJob(id);
 
             console.log("Job Deleted Successfully");
+
+            toast.success("Job deleted successfully");
         }
-        catch (error)
+        catch (error: any)
         {
             console.log(error);
+
+            toast.error(
+                error.response?.data?.message || "Failed to delete job"
+            );
         }
     };
 
