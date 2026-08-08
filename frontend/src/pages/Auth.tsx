@@ -18,13 +18,15 @@ const Auth = () =>
     const auth = useAuth();
 
     const [isLogin, setIsLogin] = useState(true);
-
+    const [submitting, setSubmitting] = useState(false);
     const [showLoginPassword, setShowLoginPassword] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogin = async (values: any) =>
+const handleLogin = async (values: any) =>
     {
         console.log("Login Started");
+
+        setSubmitting(true);
 
         try
         {
@@ -36,6 +38,8 @@ const Auth = () =>
             );
 
             console.log("Login Successful");
+
+            toast.success("Login successful");
 
             if (response.user.role === "jobRecruiter")
             {
@@ -59,14 +63,19 @@ const Auth = () =>
                 "Login Failed"
             );
         }
+        finally
+        {
+            setSubmitting(false);
+        }
     };
-
     const handleRegister = async (
         values: any,
         { resetForm }: any
     ) =>
     {
         console.log("Register Started");
+
+        setSubmitting(true);
 
         try
         {
@@ -100,8 +109,11 @@ const Auth = () =>
                 "Registration Failed"
             );
         }
+        finally
+        {
+            setSubmitting(false);
+        }
     };
-
     return (
         <div className="auth">
 
