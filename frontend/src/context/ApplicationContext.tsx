@@ -105,7 +105,8 @@ export function ApplicationProvider({ children }: any)
             throw error;
         }
     };
-    const updateApplicationStatus = async (
+    
+const updateApplicationStatus = async (
         id: string,
         status: string) =>
     {
@@ -114,7 +115,7 @@ export function ApplicationProvider({ children }: any)
         {
             await api.put(`/applications/${id}`,{status});
             console.log("Application Status Updated");
-            await getMyApplications();
+            await getRecruiterApplications();
         }
         catch (error: any)
         {
