@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { jobValidation } from "../validations/job.validation";
 import RecruiterLayout from "../layouts/RecruiterLayout";
 import "../styles/job.css";
+import ConfirmDialog from "../components/ConfirmDialog";
 import { toast } from "react-toastify";
 const emptyJob = {
     title: "",
@@ -35,6 +36,7 @@ function Job()
     const [editingId, setEditingId] = useState<string | null>(null);
 
     const [initialValues, setInitialValues] = useState(emptyJob);
+    const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
     const myJobs = job.jobs.filter(
         (item: any) => item.postedBy?._id === user?._id
@@ -131,15 +133,23 @@ try
         setInitialValues(emptyJob);
     };
 
-
-
-const handleDelete = async (id: string) =>
+const handleDeleteClick = (id: string) =>
     {
         console.log("Delete Button Clicked");
 
+        setConfirmDeleteId(id);
+    };
+
+    const handleConfirmDelete = async () =>
+    {
+        if (!confirmDeleteId)
+        {
+            return;
+        }
+
         try
         {
-            await job.deleteJob(id);
+            await job.deleteJob(confirmDeleteId);
 
             console.log("Job Deleted Successfully");
 
@@ -153,7 +163,13 @@ const handleDelete = async (id: string) =>
                 error.response?.data?.message || "Failed to delete job"
             );
         }
+        finally
+        {
+            setConfirmDeleteId(null);
+        }
     };
+
+
 
     const handleView = () =>
     {
@@ -566,6 +582,7 @@ const handleDelete = async (id: string) =>
                         </tbody>
 
                     </table>
+                    
 
                 </div>
 
@@ -577,6 +594,14 @@ const handleDelete = async (id: string) =>
                     View All Jobs
 
                 </button>
+
+                <ConfirmDialog
+                    isOpen={confirmDeleteId !== null}
+                    title="Delete Job"
+                    message="Are you sure you want to delete this job? This will also remove any applications submitted for it."
+                    onConfirm={handleConfirmDelete}
+                    onCancel={() => setConfirmDeleteId(null)}
+                />
 
             </div>
 
