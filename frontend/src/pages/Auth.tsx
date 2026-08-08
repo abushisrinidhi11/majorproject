@@ -223,11 +223,12 @@ const handleLogin = async (values: any) =>
 
                         </div>
 
-                        <button
+ <button
                             className="submitButton"
                             type="submit"
+                            disabled={submitting}
                         >
-                            Login
+                            {submitting ? "Logging in..." : "Login"}
                         </button>
 
                     </Form>
@@ -354,11 +355,12 @@ const handleLogin = async (values: any) =>
 
                         </div>
 
-                        <button
+<button
                             className="submitButton"
                             type="submit"
+                            disabled={submitting}
                         >
-                            Register
+                            {submitting ? "Registering..." : "Register"}
                         </button>
 
                     </Form>
