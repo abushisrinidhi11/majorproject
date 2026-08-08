@@ -31,6 +31,14 @@ function Profile()
         companyName: "",
         designation: ""
     });
+    const [originalProfileData, setOriginalProfileData] = useState({
+        phone: "",
+        education: "",
+        experience: "",
+        skills: [] as string[],
+        companyName: "",
+        designation: ""
+    });
 
     const loadProfile = async () =>
     {
@@ -75,6 +83,27 @@ function Profile()
         }
 
     }, [auth.user]);
+    useEffect(() =>
+    {
+        if (auth.user)
+        {
+            console.log("Setting Profile Data");
+
+            const loadedData = {
+                phone: auth.user.phone || "",
+                education: auth.user.education || "",
+                experience: auth.user.experience || "",
+                skills: auth.user.skills || [],
+                companyName: auth.user.companyName || "",
+                designation: auth.user.designation || ""
+            };
+
+            setProfileData(loadedData);
+
+            setOriginalProfileData(loadedData);
+        }
+
+    }, [auth.user]);
 
     const handleChange = (event: any) =>
     {
@@ -96,6 +125,18 @@ function Profile()
     const handleSave = async () =>
     {
         console.log("Save Profile Clicked");
+                const noChangesMade =
+            JSON.stringify(profileData) ===
+            JSON.stringify(originalProfileData);
+
+        if (noChangesMade)
+        {
+            console.log("No Changes Made - Skipping Update");
+
+            setIsEditing(false);
+
+            return;
+        }
 
         try
         {
