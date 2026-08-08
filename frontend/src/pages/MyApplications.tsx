@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useApplication } from "../context/ApplicationContext";
 import JobSeekerLayout from "../layouts/JobSeekerLayout";
 import "../styles/myApplications.css";
 import { toast } from "react-toastify";
+import ConfirmDialog from "../components/ConfirmDialog";
+
 function MyApplications()
 {
     console.log("My Applications Page Rendering");
 
     const application = useApplication();
+
+    const [confirmWithdrawId, setConfirmWithdrawId] = useState<string | null>(null);
 
     useEffect(() =>
     {
@@ -19,13 +23,23 @@ function MyApplications()
 
     }, [application.applications]);
 
-const handleWithdraw = async (id: string) =>
+    const handleWithdrawClick = (id: string) =>
     {
         console.log("Withdraw Button Clicked");
 
+        setConfirmWithdrawId(id);
+    };
+
+    const handleConfirmWithdraw = async () =>
+    {
+        if (!confirmWithdrawId)
+        {
+            return;
+        }
+
         try
         {
-            await application.withdrawApplication(id);
+            await application.withdrawApplication(confirmWithdrawId);
 
             console.log("Application Withdrawn Successfully");
 
@@ -41,8 +55,11 @@ const handleWithdraw = async (id: string) =>
                 error.response?.data?.message || "Failed to withdraw application"
             );
         }
+        finally
+        {
+            setConfirmWithdrawId(null);
+        }
     };
-
 
     if (application.loading)
     {
@@ -157,7 +174,7 @@ const handleWithdraw = async (id: string) =>
                                                         className="withdrawButton"
                                                         type="button"
                                                         onClick={() =>
-                                                            handleWithdraw(item._id)
+                                                            handleWithdrawClick(item._id)
                                                         }
                                                     >
                                                         Withdraw
@@ -176,6 +193,14 @@ const handleWithdraw = async (id: string) =>
                     </table>
 
                 </div>
+
+                <ConfirmDialog
+                    isOpen={confirmWithdrawId !== null}
+                    title="Withdraw Application"
+                    message="Are you sure you want to withdraw this application?"
+                    onConfirm={handleConfirmWithdraw}
+                    onCancel={() => setConfirmWithdrawId(null)}
+                />
 
             </div>
 
