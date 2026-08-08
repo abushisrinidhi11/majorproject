@@ -131,9 +131,7 @@ try
         setInitialValues(emptyJob);
     };
 
-    const handleDelete = async (id: string) =>
-    {
-        console.log("Delete Button Clicked");
+
 
 const handleDelete = async (id: string) =>
     {
