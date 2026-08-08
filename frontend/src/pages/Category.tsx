@@ -1,11 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { useCategory } from "../context/CategoryContext";
 import { useAuth } from "../context/AuthContext";
 import { categoryValidation } from "../validations/category.validation";
 import RecruiterLayout from "../layouts/RecruiterLayout";
 import "../styles/category.css";
-import { toast } from "react-toastify";
+
 function Category()
 {
     console.log("Category Page Rendering");
@@ -52,6 +53,7 @@ function Category()
                 await category.createCategory(values);
 
                 console.log("Category Created Successfully");
+
                 toast.success("Category created successfully");
             }
             else
@@ -67,8 +69,8 @@ function Category()
                 );
 
                 console.log("Category Updated Successfully");
-                toast.success("Category updated successfully");
 
+                toast.success("Category updated successfully");
             }
 
             resetForm();
@@ -82,13 +84,15 @@ function Category()
 
             console.log("Form Reset Successfully");
         }
-        catch (error)
+        catch (error: any)
         {
             console.log("Category Save Failed");
 
             console.log(error);
+
             toast.error(
-                error.response?.data?.message || "Failed to save category");
+                error.response?.data?.message || "Failed to save category"
+            );
         }
     };
 
@@ -104,7 +108,7 @@ function Category()
         });
     };
 
- const handleDelete = async (index: number) =>
+    const handleDelete = async (index: number) =>
     {
         console.log("Delete Button Clicked");
 
