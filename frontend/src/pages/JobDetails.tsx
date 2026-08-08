@@ -4,7 +4,7 @@ import { useJob } from "../context/JobContext";
 import { useApplication } from "../context/ApplicationContext";
 import JobSeekerLayout from "../layouts/JobSeekerLayout";
 import "../styles/jobDetails.css";
-
+import { toast } from "react-toastify";
 function JobDetails()
 {
     console.log("Job Details Page Rendering");
@@ -96,11 +96,13 @@ const [coverLetterError, setCoverLetterError] = useState("");
     setGeneratingLetter(true);
     setCoverLetterError("");
 
-    try
+try
     {
         const letter = await jobContext.generateCoverLetter(job._id);
 
         setCoverLetter(letter);
+
+        toast.success("Cover letter generated successfully");
     }
     catch (error: any)
     {
@@ -108,10 +110,13 @@ const [coverLetterError, setCoverLetterError] = useState("");
 
         console.log(error);
 
-        setCoverLetterError(
+        const message =
             error.response?.data?.message ||
-            "Failed to generate cover letter"
-        );
+            "Failed to generate cover letter";
+
+        setCoverLetterError(message);
+
+        toast.error(message);
     }
     finally
     {
@@ -132,13 +137,15 @@ const [coverLetterError, setCoverLetterError] = useState("");
         setApplying(true);
         setApplyError("");
 
-        try
+try
         {
             console.log("Calling Apply Job API");
 
             await application.applyJob(job._id, resumeFile);
 
             console.log("Application Submitted Successfully");
+
+            toast.success("Application submitted successfully");
 
             navigate("/my-applications");
         }
@@ -148,9 +155,12 @@ const [coverLetterError, setCoverLetterError] = useState("");
 
             console.log(error);
 
-            setApplyError(
-                error.response?.data?.message || "Failed To Apply"
-            );
+            const message =
+                error.response?.data?.message || "Failed To Apply";
+
+            setApplyError(message);
+
+            toast.error(message);
         }
         finally
         {
