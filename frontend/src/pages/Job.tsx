@@ -562,7 +562,7 @@ const handleDeleteClick = (id: string) =>
                                                     <button
                                                         className="deleteButton"
                                                         onClick={() =>
-                                                            handleDelete(item._id)
+                                                            handleDeleteClick(item._id)
                                                         }
                                                     >
 
