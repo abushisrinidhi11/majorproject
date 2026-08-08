@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useApplication } from "../context/ApplicationContext";
 import JobSeekerLayout from "../layouts/JobSeekerLayout";
 import "../styles/myApplications.css";
-
+import { toast } from "react-toastify";
 function MyApplications()
 {
     console.log("My Applications Page Rendering");
@@ -19,7 +19,7 @@ function MyApplications()
 
     }, [application.applications]);
 
-    const handleWithdraw = async (id: string) =>
+const handleWithdraw = async (id: string) =>
     {
         console.log("Withdraw Button Clicked");
 
@@ -28,14 +28,21 @@ function MyApplications()
             await application.withdrawApplication(id);
 
             console.log("Application Withdrawn Successfully");
+
+            toast.success("Application withdrawn successfully");
         }
-        catch (error)
+        catch (error: any)
         {
             console.log("Withdraw Failed");
 
             console.log(error);
+
+            toast.error(
+                error.response?.data?.message || "Failed to withdraw application"
+            );
         }
     };
+
 
     if (application.loading)
     {
