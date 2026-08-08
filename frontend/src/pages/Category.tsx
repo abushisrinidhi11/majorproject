@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import { categoryValidation } from "../validations/category.validation";
 import RecruiterLayout from "../layouts/RecruiterLayout";
 import "../styles/category.css";
-
+import ConfirmDialog from "../components/ConfirmDialog";
 function Category()
 {
     console.log("Category Page Rendering");
@@ -21,6 +21,7 @@ function Category()
         name: "",
         description: ""
     });
+    const [confirmDeleteIndex, setConfirmDeleteIndex] = useState<number | null>(null);
 
     if (category.loading)
     {
@@ -108,14 +109,24 @@ function Category()
         });
     };
 
-    const handleDelete = async (index: number) =>
+const handleDeleteClick = (index: number) =>
     {
         console.log("Delete Button Clicked");
+
+        setConfirmDeleteIndex(index);
+    };
+
+    const handleConfirmDelete = async () =>
+    {
+        if (confirmDeleteIndex === null)
+        {
+            return;
+        }
 
         try
         {
             const currentCategory =
-                category.categories[index];
+                category.categories[confirmDeleteIndex];
 
             await category.deleteCategory(
                 currentCategory._id
@@ -132,6 +143,10 @@ function Category()
             toast.error(
                 error.response?.data?.message || "Failed to delete category"
             );
+        }
+        finally
+        {
+            setConfirmDeleteIndex(null);
         }
     };
 
@@ -375,6 +390,13 @@ function Category()
                     </table>
 
                 </div>
+                <ConfirmDialog
+                    isOpen={confirmDeleteIndex !== null}
+                    title="Delete Category"
+                    message="Are you sure you want to delete this category?"
+                    onConfirm={handleConfirmDelete}
+                    onCancel={() => setConfirmDeleteIndex(null)}
+                />
 
             </div>
 
