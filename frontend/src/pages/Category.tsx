@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { categoryValidation } from "../validations/category.validation";
 import RecruiterLayout from "../layouts/RecruiterLayout";
 import "../styles/category.css";
-
+import { toast } from "react-toastify";
 function Category()
 {
     console.log("Category Page Rendering");
@@ -52,6 +52,7 @@ function Category()
                 await category.createCategory(values);
 
                 console.log("Category Created Successfully");
+                toast.success("Category created successfully");
             }
             else
             {
@@ -66,6 +67,8 @@ function Category()
                 );
 
                 console.log("Category Updated Successfully");
+                toast.success("Category updated successfully");
+
             }
 
             resetForm();
@@ -84,6 +87,8 @@ function Category()
             console.log("Category Save Failed");
 
             console.log(error);
+            toast.error(
+                error.response?.data?.message || "Failed to save category");
         }
     };
 
@@ -99,7 +104,7 @@ function Category()
         });
     };
 
-    const handleDelete = async (index: number) =>
+ const handleDelete = async (index: number) =>
     {
         console.log("Delete Button Clicked");
 
@@ -113,10 +118,16 @@ function Category()
             );
 
             console.log("Category Deleted Successfully");
+
+            toast.success("Category deleted successfully");
         }
-        catch (error)
+        catch (error: any)
         {
             console.log(error);
+
+            toast.error(
+                error.response?.data?.message || "Failed to delete category"
+            );
         }
     };
 
