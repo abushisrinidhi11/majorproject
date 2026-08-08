@@ -359,7 +359,7 @@ const handleDeleteClick = (index: number) =>
                                                                     <button
                                                                         className="deleteButton"
                                                                         onClick={() =>
-                                                                            handleDelete(index)
+                                                                            handleDeleteClick(index)
                                                                         }
                                                                     >
 
