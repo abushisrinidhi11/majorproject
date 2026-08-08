@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 import {
     loginValidation,
@@ -27,9 +28,6 @@ const Auth = () =>
 
         try
         {
-            console.log("Login Values");
-            console.log(values);
-
             console.log("Calling Login API");
 
             const response = await auth.login(
@@ -39,19 +37,12 @@ const Auth = () =>
 
             console.log("Login Successful");
 
-            console.log("Logged In User");
-            console.log(response.user);
-
             if (response.user.role === "jobRecruiter")
             {
-                console.log("Navigating To Recruiter Dashboard");
-
                 navigate("/recruiter/dashboard");
             }
             else
             {
-                console.log("Navigating To Home");
-
                 navigate("/home");
             }
         }
@@ -75,12 +66,7 @@ const Auth = () =>
         { resetForm }: any
     ) =>
     {
-        console.log("================================");
         console.log("Register Started");
-        console.log("Register Values");
-        console.log(values);
-        console.log("Role :", values.role);
-        console.log("================================");
 
         try
         {
@@ -132,12 +118,7 @@ const Auth = () =>
                             : "tabButton"
                     }
                     type="button"
-                    onClick={() =>
-                    {
-                        console.log("Login Tab Clicked");
-
-                        setIsLogin(true);
-                    }}
+                    onClick={() => setIsLogin(true)}
                 >
                     Login
                 </button>
@@ -149,12 +130,7 @@ const Auth = () =>
                             : "tabButton"
                     }
                     type="button"
-                    onClick={() =>
-                    {
-                        console.log("Register Tab Clicked");
-
-                        setIsLogin(false);
-                    }}
+                    onClick={() => setIsLogin(false)}
                 >
                     Register
                 </button>
@@ -207,13 +183,22 @@ const Auth = () =>
 
                                 <button
                                     type="button"
-                                    className="togglePasswordButton"
+                                    className="togglePasswordIcon"
                                     onClick={() =>
                                         setShowLoginPassword(!showLoginPassword)
                                     }
                                     tabIndex={-1}
+                                    aria-label={
+                                        showLoginPassword
+                                            ? "Hide password"
+                                            : "Show password"
+                                    }
                                 >
-                                    {showLoginPassword ? "Hide" : "Show"}
+                                    {
+                                        showLoginPassword
+                                            ? <FaEyeSlash />
+                                            : <FaEye />
+                                    }
                                 </button>
 
                             </div>
@@ -303,13 +288,22 @@ const Auth = () =>
 
                                 <button
                                     type="button"
-                                    className="togglePasswordButton"
+                                    className="togglePasswordIcon"
                                     onClick={() =>
                                         setShowPassword(!showPassword)
                                     }
                                     tabIndex={-1}
+                                    aria-label={
+                                        showPassword
+                                            ? "Hide password"
+                                            : "Show password"
+                                    }
                                 >
-                                    {showPassword ? "Hide" : "Show"}
+                                    {
+                                        showPassword
+                                            ? <FaEyeSlash />
+                                            : <FaEye />
+                                    }
                                 </button>
 
                             </div>
