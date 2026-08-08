@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/navbar.css";
+import { toast } from "react-toastify";
 function Navbar({ onMenuClick }: any)
 {
     console.log("Navbar Rendering");
@@ -12,16 +13,21 @@ function Navbar({ onMenuClick }: any)
         if (user?.role === "jobRecruiter") navigate("/recruiter/dashboard");
         else navigate("/home");
     };
-    const handleLogout = async () =>
+const handleLogout = async () =>
     {
         try
         {
             await logout();
+            toast.success("Logout successful");
             navigate("/auth");
         }
-        catch (error)
+        catch (error: any)
         {
             console.log(error);
+
+            toast.error(
+                error.response?.data?.message || "Logout failed"
+            );
         }
     };
     return (
